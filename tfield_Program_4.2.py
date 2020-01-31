@@ -9,20 +9,6 @@ Created on Fri Jan 31 12:56:48 2020
 import turtle
 import math
 
-t42 = turtle.Turtle()
-
-#for flowerNum in range(3): #Draw 3 flowers
-    
-    
-arc(t42, 50, 360)   
-    
-    
-    
-
-
-
-turtle.mainloop()
-
 # Draws an arc in turtle (t) with radius (r) and at the specified angle
 def arc(t, r, angle):
     arc_length = 2 * math.pi * r * angle / 360
@@ -36,21 +22,36 @@ def polyline(t, n, length, angle):
     for i in range(n):
         t.fd(length)
         t.lt(angle)
-        
-# Draw
-def petal(t, r, angle)
+       
+# Draws a single petal in turtle (t) using radius (r) and angle (angle) for the arcs
+def petal(t, r, angle):
     arc(t, r, angle)
-    t.lt(180)
+    t.lt(180-angle)
     arc(t, r, angle)
+    t.lt(180-angle)
         
-def flower(t, n, rad):
+# Draws a flower by drawing multiple petals around the starting point
+def flower(t, r, n, angle):
     for i in range(n):
         petal(t, r, angle)
-        t.lt(180())
-    
-    
-    
-    
-    
-    
+        t.lt(360//n)
+        
+# Moves the pen horizontally, without drawing
+def shift(t, d):
+    t.pu();
+    t.fd(d);
+    t.pd();
 
+t42 = turtle.Turtle()
+
+shift(t42, -150)
+ #Draw 3 flowers
+flower(t42, 50, 7, 60) #Left flower
+shift(t42, 150)
+flower(t42, 50, 10, 90) #Center flower
+shift(t42, 150)
+flower(t42, 100, 20, 30) #Right flower
+
+
+turtle.update()
+turtle.mainloop()
